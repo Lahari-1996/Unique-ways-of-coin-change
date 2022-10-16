@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.toList;
+
+public class Main{
+    
+    public static int peakPoint(int n,int[] arr){
+        
+        int a=0;
+        
+        if(n==1){
+                return 0;
+            }
+            if(arr[0]>=arr[1]){
+                a= 0;
+            }
+            if(arr[n-1]>=arr[n-2]){
+                a= n-1;
+            }
+            for(int j=1;j<n-1;j++){
+                if(arr[j]>=arr[j+1] && arr[j]>=arr[j-1]){
+                    a= j;
+                }
+                
+            }
+            return a;
+        
+    }
+    
+    public static void main(String[] args) throws IOException{
+        
+        BufferedReader bf=new BufferedReader (new InputStreamReader(System.in));
+        
+        int t=Integer.parseInt(bf.readLine());
+        
+        for(int i=0;i<t;i++){
+        
+            int n=Integer.parseInt(bf.readLine());
+            
+            String[] b=bf.readLine().trim().split(" ");
+            
+            int[] arr=Stream.of(b).mapToInt(c -> Integer.parseInt(c)).toArray();
+            
+            System.out.println(peakPoint(n,arr));
+            
+            
+            
+        }
+    }
+}
